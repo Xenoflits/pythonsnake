@@ -6,8 +6,9 @@ FONT = ("Courier", 20, "normal")
 class Scoreboard(Turtle):
     def __init__(self):
         super().__init__()
+        self.read_highscore()
         self.score = 0
-        self.hiscore = 0
+        self.hiscore = self.read_highscore()
        
         self.color("white")
         self.pu()
@@ -22,6 +23,7 @@ class Scoreboard(Turtle):
     def reset(self):
         if self.score>self.hiscore:
             self.hiscore = self.score
+            self.write_highscore()
         self.clear()
         self.update_scoreboard()
         
@@ -34,5 +36,14 @@ class Scoreboard(Turtle):
     def game_over(self):
         
         self.reset()
+
+    def read_highscore(self):
+        with open('highscore.txt') as score_from_file:
+            contents = score_from_file.read()
+            return int(contents)
+        
+    def write_highscore(self):
+        with open('highscore.txt', mode="w") as score_from_file:
+            score_from_file.write(str(self.score))
         
 
