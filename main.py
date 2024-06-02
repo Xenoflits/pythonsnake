@@ -37,12 +37,12 @@ while game_is_on:
     y_cor = snake.segments[0].ycor()
     if x_cor > 280 or x_cor < -280 or y_cor > 280 or y_cor < -280:
         scoreboard.game_over()
-        game_is_on = False
+        snake.reset()
     
     #collision with self
     for segment in snake.segments[1:]:
         if snake.segments[0].distance(segment) < 10:
-            game_is_on = False
+            snake.reset()
             scoreboard.game_over()
 
 screen.exitonclick()
