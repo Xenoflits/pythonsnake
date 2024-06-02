@@ -20,6 +20,17 @@ class Snake:
             new_segment.goto(position)
             self.segments.append(new_segment)
     
+    def add_segment(self,position):
+            new_segment = Turtle("square")
+            new_segment.color("white")
+            new_segment.pu()
+            new_segment.goto(position)
+            self.segments.append(new_segment)
+    
+    def extend(self):
+        self.add_segment(self.segments[-1].position())
+        return
+    
     def up(self):
         if self.segments[0].heading() != DOWN:
             self.segments[0].seth(UP)
